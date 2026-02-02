@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BinIt – Report Issue</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>🗑️ BinIt – Report Waste Issue</h2>
+  <p class="subtitle">Help us keep your area clean by reporting any waste-related issues.</p>
+
+  <form id="form">
+    <!-- User Info -->
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+
+    <!-- Issue Type -->
+    <select id="issueType" required>
+      <option value="" disabled selected>Select Issue Type</option>
+      <option value="Garbage Accumulation">Garbage Accumulation</option>
+      <option value="Overflowing Dustbins">Overflowing Dustbins</option>
+      <option value="Open Drains">Open Drains</option>
+      <option value="Public Toilet Hygiene">Public Toilet Hygiene</option>
+      <option value="Illegal Dumping">Illegal Waste Dumping</option>
+      <option value="Hazardous Waste">Hazardous Waste</option>
+    </select>
+
+    <!-- Description -->
+    <textarea id="description" placeholder="Describe the issue" required></textarea>
+
+    <!-- Location -->
+    <input type="text" id="location" placeholder="Location (Optional)">
+
+    <!-- Date & Time -->
+    <input type="datetime-local" id="dateTime">
+
+    <!-- File Upload -->
+    <input type="file" id="image" accept="image/*" required>
+    <img id="preview" src="" alt="Image Preview" style="display:none; max-width:100%; border-radius:8px; margin-top:10px;">
+
+    <!-- Submit -->
+    <button type="submit">Submit Complaint</button>
+  </form>
+</div>
+
+<script src="script.js"></script>
+<script>
+  // Image preview
+  const imageInput = document.getElementById('image');
+  const preview = document.getElementById('preview');
+
+  imageInput.addEventListener('change', function() {
+    const file = this.files[0];
+    if (file){
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = 'block';
+    } else {
+      preview.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

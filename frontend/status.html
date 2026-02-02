@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Complaint Status</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>Complaint Status</h2>
+<table id="table" border="1"></table>
+
+<script>
+fetch('https://binit-backend-97m8.onrender.com/api/complaints')
+.then(res => res.json())
+.then(data => {
+  let html = '<tr><th>Issue</th><th>Status</th><th>Image</th></tr>';
+  data.forEach(c => {
+    html += `<tr>
+               <td>${c.issueType}</td>
+               <td>${c.status}</td>
+               <td>${c.image ? `<img src="https://binit-backend-97m8.onrender.com/uploads/${c.image}" width="100"/>` : 'No image'}</td>
+             </tr>`;
+  });
+  document.getElementById('table').innerHTML = html;
+})
+.catch(err => console.error('Error fetching complaints:', err));
+</script>
+</body>
+</html>
